@@ -4,7 +4,7 @@ data class NovelInfo(
         val allcount: Int,
         val title: String,
         val ncode: String,
-        val userid : Int,
+        val userid: Int,
         val writer: String,
         val story: String,
         val end: Int,

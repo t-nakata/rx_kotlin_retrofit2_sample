@@ -9,7 +9,7 @@ class Client {
 
     companion object {
         private const val BASE_URL = "https://api.syosetu.com/novelapi/api/"
-        private lateinit var sRetrofit : Retrofit
+        private lateinit var sRetrofit: Retrofit
     }
 
     init {
