@@ -3,16 +3,16 @@ package com.example.t_nakata.rx_kotlin_retrofit2_sample
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import rx.Observable
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mObservable: Observable<List<NovelInfo>>
-    private lateinit var mSubscription: Subscription
+    private lateinit var mDisposable: Disposable
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        mSubscription = mObservable
+        mDisposable = mObservable
                 .subscribe (
                         { list -> doSomethingToList(list) }
                         , { t -> onError(t) }
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        mSubscription.unsubscribe()
+        mDisposable.dispose()
     }
 
     private fun doSomethingToList(list: List<NovelInfo>) {
